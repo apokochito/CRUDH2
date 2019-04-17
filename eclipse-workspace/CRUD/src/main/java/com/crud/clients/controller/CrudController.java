@@ -21,37 +21,49 @@ import com.crud.clients.service.CrudService;
 @RequestMapping(value = "/crud")
 public class CrudController {
 	
+	private final CrudService service;
+
+	public CrudController(CrudService service) {
+		this.service = service;
+	}
+
+	// @Autowired
+	// CrudService service;
+	
+	// private static final Logger log=LoggerFactory.getLogger(CrudControllerImpl.class);
+	
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping(value = "/Clients")
-	public static List<Client> getClients(){
-		return CrudService.getClients();
+	public List<Client> getClients(){
+		List<Client> client = service.getClients();
+		return client;
 	}
 
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping(value = "/Clients/{id}")
 	// Represents the whole HTTP response, generic type for more flexibility.
-	public static ResponseEntity<Client> getById(@PathVariable("id") long id){
-		Client client = CrudService.getById(id);
+	public ResponseEntity<Client> getById(@PathVariable("id") long id){
+		Client client = service.getById(id);
 		return ResponseEntity.ok().body(client);
 	}
 
 	@PostMapping(value = "/Clients")
 	// Returns a client of domain, passing a JSON of an entire client through of
 	// request
-	public static ResponseEntity<String> createClient(@RequestBody Client client){
-		CrudService.createClient(client);
+	public ResponseEntity<String> createClient(@RequestBody Client client){
+		service.createClient(client);
 		return new ResponseEntity<>(" Client CREATED : client ", HttpStatus.CREATED);
 	}
 
 	@DeleteMapping(value = "/Clients/{id}")
-	public static ResponseEntity<String> deleteClient(@PathVariable("id") long id){
-		CrudService.deleteById(id);
+	public ResponseEntity<String> deleteClient(@PathVariable("id") long id){
+		service.deleteById(id);
 		return new ResponseEntity<>(" Client DELETED   : client ", HttpStatus.OK);
 	}
 
 	@PutMapping(value = "/Clients/{id}")
-	public static ResponseEntity<String> updateClient(@PathVariable("id") long id, @RequestBody Client client){
-		CrudService.updateClient(id, client);
+	public ResponseEntity<String> updateClient(@PathVariable("id") long id, @RequestBody Client client){
+		service.updateClient(id, client);
 		return new ResponseEntity<>(" Client UPDATED   : client ", HttpStatus.OK);
 	}
 

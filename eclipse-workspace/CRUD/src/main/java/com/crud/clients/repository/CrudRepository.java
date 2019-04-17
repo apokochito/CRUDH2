@@ -2,48 +2,17 @@ package com.crud.clients.repository;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
 import com.crud.clients.entity.ClientEntity;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
-@Repository
-public class CrudRepository {
+public interface CrudRepository {
 	
-	@Autowired
-	static JpaRepository<ClientEntity, Long> jpa;
-	
-	public static List<ClientEntity> getClients() {
-		List<ClientEntity> daoResponse = jpa.findAll();
-		//List<ClientEntity> daoResponse = jpa.findAll();
-		log.info("---------"+daoResponse);
-		return daoResponse;
-	}
+	public List<ClientEntity> getClients();
 
-	public static ClientEntity getById(long id) {
-		// Finding and getting the client by Id in the table using JPA WHY?
-		ClientEntity daoResponse = (ClientEntity) jpa.findById(id).get();
-		return daoResponse;
-	}
+	public ClientEntity getById(long id);
 
-	public static void createClient(ClientEntity clientEntity) {
-		jpa.save(clientEntity);
-	}
+	public void createClient(ClientEntity clientEntity);
 
-	public static void deleteById(long id) {
-		jpa.deleteById(id);
-	}
+	public void deleteById(long id);
 
-	public static void updateClient(ClientEntity clientEntity, long id) {
-		ClientEntity daoResponse = (ClientEntity) jpa.findById(id).get(); // JPA why?
-		daoResponse.setName(clientEntity.getName());
-		daoResponse.setLastName(clientEntity.getLastName());
-		daoResponse.setGender(clientEntity.getGender());
-		daoResponse.setAge(clientEntity.getAge());
-		jpa.save(daoResponse);
-	}
+	public void updateClient(ClientEntity clientEntity, long id);
 }
