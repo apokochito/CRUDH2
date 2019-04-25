@@ -25,13 +25,13 @@ public class CrudServiceImpl implements CrudService {
 	@Override
 	public List<Client> getClients() {
 		List<ClientEntity> responseEntity = repo.getClients();
-		List<Client> response = new ArrayList<Client>();
+		List<Client> clientDomain = new ArrayList<Client>();
 		// stream - To process collections of objects: for each element(variable) (->)
 		// do that sequence
 		responseEntity.stream().forEach((clientD) -> {
-			response.add(facade.map(clientD, Client.class)); // Adding every element to domain response
+			clientDomain.add(facade.map(clientD, Client.class)); // Adding every element to domain response
 		});
-		return response;
+		return clientDomain;
 	}
 
 	@Override
@@ -41,27 +41,10 @@ public class CrudServiceImpl implements CrudService {
 		clientEntity = repo.getById(id);
 		clientDomain = facade.map(clientEntity, Client.class);
 		return clientDomain;
-//		// Instantiate a client of the entity
-//		ClientEntity clientEntity = new ClientEntity();
-//		// Instantiate the domain
-//		Client clientD = new Client();
-//		clientEntity = repo.getById(id);
-//		clientD.setId(clientEntity.getId());
-//		clientD.setName(clientEntity.getName());
-//		clientD.setLastName(clientEntity.getLastName());
-//		clientD.setGender(clientEntity.getGender());
-//		clientD.setAge(clientEntity.getAge());
-//		return clientD;
 	}
 
 	@Override
 	public void createClient(Client client) {
-//		ClientEntity clientEntity = new ClientEntity();
-//		clientEntity.setName(client.getName());
-//		clientEntity.setLastName(client.getLastName());
-//		clientEntity.setGender(client.getGender());
-//		clientEntity.setAge(client.getAge());
-//		repo.createClient(clientEntity);
 		ClientEntity clientEntity = new ClientEntity();
 		clientEntity = facade.map(client, ClientEntity.class);
 		repo.createClient(clientEntity);
@@ -74,12 +57,6 @@ public class CrudServiceImpl implements CrudService {
 
 	@Override
 	public void updateClient(long id, Client client) {
-//		ClientEntity clientEntity = new ClientEntity();
-//		clientEntity.setName(client.getName());
-//		clientEntity.setLastName(client.getLastName());
-//		clientEntity.setGender(client.getGender());
-//		clientEntity.setAge(client.getAge());
-//		repo.updateClient(clientEntity, id);
 		ClientEntity clientEntity = new ClientEntity();
 		clientEntity = facade.map(client, ClientEntity.class);
 		repo.updateClient(clientEntity, id);

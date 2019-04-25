@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-@ComponentScan // @ComponentScan(basePackages = "com.crud.clients")
+@ComponentScan(basePackages = "com.crud.clients")
 @SpringBootApplication
 public class CrudApplication {
 

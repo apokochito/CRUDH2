@@ -25,7 +25,7 @@ public class CrudController {
 
 	public CrudController(CrudService service) {
 		this.service = service;
-	}
+	} //The best way
 
 	// @Autowired
 	// CrudService service;
@@ -48,8 +48,6 @@ public class CrudController {
 	}
 
 	@PostMapping(value = "/Clients")
-	// Returns a client of domain, passing a JSON of an entire client through of
-	// request
 	public ResponseEntity<String> createClient(@RequestBody Client client){
 		service.createClient(client);
 		return new ResponseEntity<>(" Client CREATED : client ", HttpStatus.CREATED);
