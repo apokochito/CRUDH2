@@ -1,7 +1,8 @@
 package com.crud.clients;
 
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
 
 import java.util.Collections;
 

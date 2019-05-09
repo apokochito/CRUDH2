@@ -6,6 +6,6 @@ import org.springframework.stereotype.Component;
 import com.crud.clients.entity.ClientEntity;
 
 @Component
-public interface ClientsRepository extends JpaRepository<ClientEntity, Long> {
+public interface JPAClients extends JpaRepository<ClientEntity, Long> {
 	
 }
