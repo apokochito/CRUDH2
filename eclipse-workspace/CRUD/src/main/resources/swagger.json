@@ -1,0 +1,11 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is an example of the genrated swagger files",
+    "version" : "v1",
+    "title" : "Swagger Genrated Files Example"
+  },
+  "tags" : [ {
+    "name" : "Microservices H2"
+  } ]
+}
