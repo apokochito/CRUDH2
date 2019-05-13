@@ -143,24 +143,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- Swagger UI Plugin -->
-			<plugin>
-				<groupId>com.googlecode.maven-download-plugin</groupId>
-				<artifactId>download-maven-plugin</artifactId>
-				<version>1.2.1</version>
-				<executions>
-					<execution>
-						<id>swagger-ui</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>wget</goal>
-						</goals>
-						<configuration>
-							<url>file:///C:/Tmp/swagger-ui-master.tar.gz</url>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
@@ -278,6 +260,9 @@
 								<!-- Sets the name of the property containing the settings for JaCoCo 
 									runtime agent. -->
 								<propertyName>surefireArgLine</propertyName>
+								<excludes>
+									<exclude>**/*OrikaMapper.*</exclude>
+								</excludes>
 							</configuration>
 						</execution>
 						<!-- Ensures that the code coverage report for unit tests is created 

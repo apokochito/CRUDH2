@@ -1,6 +1,8 @@
 ---
 swagger: "2.0"
 info:
-  description: "API for Clients"
+  description: "This is an example of the genrated swagger files"
   version: "v1"
-  title: "Clients Rest API"
+  title: "Swagger Genrated Files Example"
+tags:
+- name: "Microservices H2"

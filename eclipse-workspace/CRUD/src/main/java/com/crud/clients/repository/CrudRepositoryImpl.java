@@ -30,7 +30,7 @@ public class CrudRepositoryImpl implements CrudRepository{
 
 	@Override
 	public void createClient(ClientEntity clientEntity) {
-		jpaClients.save(clientEntity); // JPA why?
+		jpaClients.save(clientEntity);
 	}
 
 	@Override

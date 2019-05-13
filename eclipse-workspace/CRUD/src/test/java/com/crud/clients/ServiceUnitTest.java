@@ -48,7 +48,7 @@ public class ServiceUnitTest {
 	// One assertions for test
 	@Test
 	public void getClients() {
-		List<ClientEntity> clients = dummy.getClientEntityDummy();
+		List<ClientEntity> clients = dummy.getClientsEntityDummy();
 		when(repo.getClients()).thenReturn(clients);
 		assertNotNull(service.getClients());
 	}
@@ -63,8 +63,6 @@ public class ServiceUnitTest {
 	
 	@Test
 	public void getByIdClient() {
-		assertNotNull(clientEntity);
-		assertNotNull(clientDomain);
 		when(repo.getById(id)).thenReturn(clientEntity);
 		when(facade.map(clientEntity, Client.class)).thenReturn(clientDomain);
 		assertNotNull(service.getById(id));
@@ -72,23 +70,20 @@ public class ServiceUnitTest {
 	
 	@Test
 	public void createClient() {
-		assertNotNull(clientEntity);
+		
 		when(facade.map(clientDomain, ClientEntity.class)).thenReturn(clientEntity);
 		doNothing().when(repo).createClient(clientEntity);
-		//Assert
 		service.createClient(clientDomain);
 	}
 	
 	@Test
 	public void deleteClient() {
 		doNothing().when(repo).deleteById(id);
-		//Assert
 		service.deleteById(id);
 	}
 	
 	@Test
 	public void updateClient() {
-		assertNotNull(clientEntity);
 		when(facade.map(clientDomain, ClientEntity.class)).thenReturn(clientEntity);
 		doNothing().when(repo).updateClient(clientEntity, id);
 		//Without assert because I can't assert something if the method doesn't retun anything (its a void).
