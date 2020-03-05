@@ -1,4 +1,4 @@
-package com.crud.clients;
+package com.crud.clients.config;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 

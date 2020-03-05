@@ -112,6 +112,73 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<!-- Generates swagger.json -->
+				<groupId>com.github.kongchen</groupId>
+				<artifactId>swagger-maven-plugin</artifactId>
+				<version>3.1.7</version>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<apiSources>
+						<apiSource>
+							<springmvc>true</springmvc>
+							<locations>com.crud.clients</locations>
+							<!-- <schemes>http,https</schemes>-->
+							<info>
+								<title>Swagger Genrated Files Example</title>
+								<description>
+									This is the documentation for this project
+								</description>
+								<version>0.0.1</version>
+							</info>
+							<outputFormats>json,yaml</outputFormats>
+							<swaggerDirectory>${project.basedir}/src/main/resources</swaggerDirectory>
+							<swaggerFileName>swagger</swaggerFileName>
+							<!--<swaggerApiReader>com.github.kongchen.swagger.docgen.reader.SpringMvcApiReader
+                            </swaggerApiReader>
+                            <swaggerExtensions>com.github.kongchen.swagger.docgen.spring.SpringSwaggerExtension
+                            </swaggerExtensions>
+                            <attachSwaggerArtifact>true</attachSwaggerArtifact>-->
+						</apiSource>
+					</apiSources>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.3</version>
+				<configuration>
+					<excludes>
+						<exclude>**/*src/main/**/*</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>target/jacoco-report</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
